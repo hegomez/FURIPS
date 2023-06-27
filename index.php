@@ -1,4 +1,5 @@
 <?php
+	require_once('inc/parametros.php');
 	require_once('inc/func.php');
 ?>
 <!DOCTYPE html>
@@ -66,29 +67,31 @@
 		</section>
 		<section class="content">
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<div class="box">
 						<div class="box-body">
 							<div class="col-md-4">
 								<?php
 									$Titulo=array(
-										''=>array('INICIAL','fas fa-plus-circle'),
-										'I.'=>array('INSTITUCION','fas fa-building'),
-										'II.'=>array('VICTIMA','fas fa-user-injured'),
-										'III.'=>array('LUGAR','fas fa-map-marker-alt'),
-										'IV.'=>array('VEHICULO','fas fa-car-crash'),
-										'V.'=>array('PROPIETARIO','fas fa-user-tie'),
-										'VI.'=>array('CONDUCTOR','fas fa-user'),
-										'VII.'=>array('REMISION','fas fa-file-medical'),
-										'VIII.'=>array('TRANSPORTE','fas fa-ambulance'),
-										'IX.'=>array('ATENCION','fas fa-notes-medical'),
-										'X.'=>array('VALORES','fas fa-file-invoice-dollar')
+										'I'=>array('INICIAL','fas fa-plus-circle','Datos Reclanación'),
+										'II'=>array('INSTITUCION','fas fa-building','Datos Prestador'),
+										'III'=>array('VICTIMA','fas fa-user-injured','Datos Victima'),
+										'IV'=>array('LUGAR','fas fa-map-marker-alt','Datos Lugar'),
+										'V'=>array('VEHICULO','fas fa-car-crash','Datos Vehiculo'),
+										'VI'=>array('RELACIONADO','fas fa-notes-medical','Datos Relacionados'),
+										'VII'=>array('PROPIETARIO','fas fa-user-tie','Datos Propietario'),
+										'VIII'=>array('CONDUCTOR','fas fa-user','Datos Conductor'),
+										'IX'=>array('REMISION','fas fa-file-medical','Datos Remision'),
+										'X'=>array('TRANSPORTE','fas fa-ambulance','Datos Transporte'),
+										'XI'=>array('ATENCION','fas fa-notes-medical','Certificado Atención'),
+										'XII'=>array('MEDICO','fas fa-notes-medical','Medico Tratante'),
+										'XIII'=>array('VALORES','fas fa-file-invoice-dollar','Amparos de Reclamo')
 									);
 								?>
 								<ul class="nav nav-tabs tabs-left">
 									<?php foreach( $Titulo as $key => $data ){ ?>
 										<li class="<?php if(empty($key)){ echo 'active'; } ?>">
-											<a href="#tab-<?php echo $data[0]; ?>" data-toggle="tab"><i class="<?php echo $data[1] ?>"></i> <?php echo $key.' '.$data[0]; ?></a>
+											<a href="#tab-<?php echo $data[0]; ?>" data-toggle="tab"><i class="<?php echo $data[1] ?>"></i> <?php echo $key.' '.$data[2]; ?></a>
 										</li>
 									<?php } ?>
 								</ul>
@@ -134,12 +137,25 @@
 <script>
 	$(document).ready(function () {
 		$('.sidebar-menu').tree();
+		$("#C_4").val('2023010001');
 	})
 	
 	$(document).on('click','.checkbox',function(){
 		let miscasillas=document.getElementById('RG');
 		$("#RG").prop('checked', $("#RG").prop("checked"));
 		console.log($("#RG").prop('checked'));
+		if($("#RG").prop('checked')==false){
+			//remove disabled #C_1
+			$("#C_1").prop('disabled', false);
+			$("#C_2").prop('disabled', false);
+		} else {
+			//add disabled #C_1
+			$("#C_1").prop('disabled', true);
+			$("#C_1").val('');
+			$("#C_2").prop('disabled', true);
+			//select the first option of this select
+			$("#C_2").val($("#C_2 option:first").val());
+		}
 		if($(this).hasClass('checked')){
 			$(this).removeClass('checked');
 		}else{

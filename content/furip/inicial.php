@@ -15,7 +15,13 @@
     <div class="col-md-6">
         <div class="input-group">
             <div class="input-group-addon"><i class="fas fa-hashtag"></i></div>
-            <input type="text" class="form-control" name="RadAnt" id="RadAnt" placeholder="# Radicado Anterior" value="">
+            <?php echo frmControl(1,'placeholder','','disabled'); ?>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group">
+            <div class="input-group-addon"><i class="fas fa-reply"></i></div>
+            <?php echo frmControl(2,'tooltip','','disabled'); ?>
         </div>
     </div>
 </div>
@@ -23,7 +29,13 @@
     <div class="col-md-6">
         <div class="input-group">
             <div class="input-group-addon"><i class="fas fa-file-invoice"></i></div>
-            <input type="text" class="form-control" name="NroFact" id="NroFact" placeholder="# Factura" value="">
+            <?php echo frmControl(3,'placeholder'); ?>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-group">
+            <div class="input-group-addon"><i class="fas fa-arrows-alt"></i></div>
+            <?php echo frmControl(4,'tooltip'); ?>
         </div>
     </div>
 </div>

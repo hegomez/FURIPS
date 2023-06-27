@@ -21,3 +21,4 @@ La implementación de esta aplicación se basa en la Circular 000000008 de 2023,
 - [SweetAlert2](https://sweetalert2.github.io/): Librería utilizada para mostrar mensajes y notificaciones interactivas en la aplicación.
 
 ¡Gracias por tu interés en FURIPS_WEB! Si tienes alguna pregunta o sugerencia, no dudes en abrir un problema en este repositorio.
+

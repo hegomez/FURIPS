@@ -26,3 +26,33 @@
             echo'></div>';
         }
     }
+
+    function frmControl($id,$placeholder='',$value='',$disabled=''){
+        global $campos;
+        $control='';
+        $type=isset($campos[$id]['type']) ? $campos[$id]['type'] : 'text';
+        //$placeholder='';
+        $tooltip='';
+        if($placeholder=='placeholder'){
+            $placeholder=isset($campos[$id]['placeholder']) ? $campos[$id]['placeholder'] : $campos[$id]['detalle'];
+        } else if($placeholder=='tooltip'){
+            $title=isset($campos[$id]['placeholder']) ? $campos[$id]['placeholder'] : $campos[$id]['detalle'];
+            $tooltip='data-toggle="tooltip" data-placement="top" title="'.$title.'"';
+            $placeholder='';
+        }
+        //create a select
+        if(isset($campos[$id]['values'])){
+
+            $input='<select '.$disabled.' class="form-control" name="C_'.$id.'" id="C_'.$id.'" '.$tooltip.'>';
+            $t=empty($placeholder) ? '...' : $placeholder;
+            $input.='<option disabled selected value="">'.$t.'</option>';
+            foreach($campos[$id]['values'] as $k => $v){
+                $selected=($value==$k) ? 'selected' : '';
+                $input.='<option '.$selected.' value="'.$k.'">'.$v.'</option>';
+            }
+            $input.='</select>';
+        } else {
+            $input='<input '.$disabled.' type="'.$type.'" class="form-control" name="C_'.$id.'" id="C_'.$id.'" placeholder="'.$placeholder.'" value="'.$value.'" '.$tooltip.'>';
+        }
+        return $input;
+    }

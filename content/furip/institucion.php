@@ -8,7 +8,7 @@
     <div class="col-md-6">
         <div class="input-group">
             <div class="input-group-addon"><i class="fas fa-indent"></i></div>
-            <input type="text" class="form-control" name="HabIPS" id="HabIPS" placeholder="Habilitacion" value="">
+            <?php echo frmControl(5,'placeholder'); ?>
         </div>
     </div>
     <div class="col-md-6">

@@ -1,12 +1,8 @@
 <div class="row row-bottom-margin">
-    <div class="col col-md-4">
+    <div class="col col-md-5">
         <div class="input-group">
             <div class="input-group-addon"><i class="fas fa-clipboard-check"></i></div>
-            <select class="form-control " data-toggle="tooltip" data-placement="top" title="Tipo Referencia" id="rTipo" name="rTipo">
-                <option selected value="-1">...</option>
-                <option value="1">Remision</option>
-                <option value="2">Orden Servicio</option>
-            </select>
+            <?php echo frmControl(64,'tooltip'); ?>
         </div>
     </div>
 </div>
@@ -14,62 +10,62 @@
     <div class="col col-md-7">
         <div class="input-group">
             <div class="input-group-addon"><i class="far fa-calendar-alt"></i></div>
-            <input type="date" class="form-control" data-toggle="tooltip" data-placement="top" title="Fecha Remision" id="rFechaRemision" name="rFechaRemision">
+            <?php echo frmControl(65,'tooltip'); ?>
         </div>
     </div>
     <div class="col col-md-5">
         <div class="input-group">
             <div class="input-group-addon"><i class="far fa-clock"></i></div>
-            <input type="time" class="form-control " data-toggle="tooltip" data-placement="top" title="Hora Remision" id="rHoraRemision" name="rHoraRemision" placeholder="Hora Remision">
+            <?php echo frmControl(66,'tooltip'); ?>
         </div>
     </div>
     <div class="col col-md-12">
         <div class="input-group">
             <div class="input-group-addon"><i class="far fa-building"></i></div>
-            <input type="text" class="form-control " id="rTIPSrem" name="rTIPSrem" placeholder="IPS QUE REMITE">
+            <?php echo frmControl(67,'placeholder'); ?>
         </div>
     </div>
     <div class="col col-md-8">
         <div class="input-group">
             <div class="input-group-addon"><i class="fas fa-user-md"></i></div>
-            <input type="text" class="form-control " id="rMedRem" name="rMedRem" placeholder="Profesional que Remite">
+            <?php echo frmControl(68,'placeholder'); ?>
         </div>
     </div>
     <div class="col col-md-4">
         <div class="input-group">
             <div class="input-group-addon"><i class="far fa-id-badge"></i></div>
-            <input type="text" class="form-control " id="rCargoRem" name="rCargoRem" placeholder="Cargo Profesional">
+            <?php echo frmControl(69,'placeholder'); ?>
         </div>
     </div>
 
     <div class="col col-md-7">
         <div class="input-group">
             <div class="input-group-addon"><i class="far fa-calendar-alt"></i></div>
-            <input type="date" class="form-control" data-toggle="tooltip" data-placement="top" title="Fecha Aceptacion" id="rFechaAceptacion" name="rFechaAceptacion">
+            <?php echo frmControl(70,'tooltip'); ?>
         </div>
     </div>
     <div class="col col-md-5">
         <div class="input-group">
             <div class="input-group-addon"><i class="far fa-clock"></i></div>
-            <input type="time" class="form-control " data-toggle="tooltip" data-placement="top" title="Hora Aceptacion" id="rHoraAceptacion" name="rHoraAceptacion">
+            <?php echo frmControl(71,'tooltip'); ?>
         </div>
     </div>
     <div class="col col-md-12">
         <div class="input-group">
             <div class="input-group-addon"><i class="far fa-building"></i></div>
-            <input type="text" class="form-control " id="rTIPSAcep" name="rTIPSacep" placeholder="IPS QUE ACEPTA">
+            <?php echo frmControl(72,'placeholder'); ?>
         </div>
     </div>
     <div class="col col-md-8">
         <div class="input-group">
             <div class="input-group-addon"><i class="fas fa-user-md"></i></div>
-            <input type="text" class="form-control " id="rMedAcep" name="rMedAcep" placeholder="Profesional que Acepta">
+            <?php echo frmControl(73,'placeholder'); ?>
         </div>
     </div>
     <div class="col col-md-4">
         <div class="input-group">
             <div class="input-group-addon"><i class="far fa-id-badge"></i></div>
-            <input type="text" class="form-control " id="rCargoRem" name="rCargoRem" placeholder="Cargo Profesional">
+            <?php echo frmControl(74,'placeholder'); ?>
         </div>
     </div>
 </div>
