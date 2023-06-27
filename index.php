@@ -134,6 +134,10 @@
 <script src="bower_components/fastclick/lib/fastclick.js"></script>
 <script src="dist/js/adminlte.js"></script>
 <script src="dist/js/demo.js"></script>
+<script src="dist/js/campos.js"></script>
+<script src="dist/js/furips.js"></script>
+<!-- insertar sweetalert online -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 	$(document).ready(function () {
 		$('.sidebar-menu').tree();

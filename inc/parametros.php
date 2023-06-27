@@ -27,7 +27,7 @@
         25=>array('detalle'=>'Código del departamento de ocurrencia del evento','long'=>2,'values'=>array(),'placeholder'=>'Departamento'),
         26=>array('detalle'=>'Código del municipio de ocurrencia del evento','long'=>3,'values'=>array(),'placeholder'=>'Municipio'),
         27=>array('detalle'=>'Zona de ocurrencia del evento','long'=>1,'values'=>array('U'=>'U','R'=>'R')),
-        28=>array('detalle'=>'Estado de aseguramiento','long'=>1,'values'=>array('1'=>'Asegurado','2'=>'No asegurado','3'=>'Vehículo fantasma','4'=>'Póliza falsa','5'=>'Vehículo en Fuga','6'=>'Asegurado D.','7'=>'No asegurado - Propietario Indeterminado')),
+        28=>array('detalle'=>'Estado de aseguramiento','long'=>1,'values'=>array('1'=>'Asegurado','2'=>'No asegurado','3'=>'Vehículo fantasma','4'=>'Póliza falsa','5'=>'Vehículo en Fuga','6'=>'Asegurado D.2497','7'=>'No asegurado - Propietario Indeterminado')),
         29=>array('detalle'=>'Marca','long'=>15),
         30=>array('detalle'=>'Placa','long'=>10),
         31=>array('detalle'=>'Tipo de Vehículo','long'=>2,'values'=>array('1'=>'Automóvil','2'=>'Bus','3'=>'Buseta','4'=>'Camión','5'=>'Camioneta','6'=>'Campero','7'=>'Microbus','8'=>'Tractocamión','10'=>'Motocicleta','14'=>'Motocarro','17'=>'Mototriciclo','19'=>'Cuatrimoto','20'=>'Moto Extrajera','21'=>'Vehículo Extranjero','22'=>'Volqueta')),
@@ -102,3 +102,5 @@
         100=>array('detalle'=>'Total reclamado por amparo de gastos de transporte y movilización de la víctima','long'=>15),
         101=>array('detalle'=>'Manifestación de servicios habilitados','long'=>3,'values'=>array('0'=>'NO','1'=>'SI')),
     );
+
+    $obligatorios=array(3,4,5,6,8,10,11,12,14,16,17,20,22,23,24,25,26,27,28,36,37,46,48,54,80,81,82,83,84,87,94,96,97,98,99,100,101);

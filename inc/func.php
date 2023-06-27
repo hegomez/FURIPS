@@ -28,7 +28,7 @@
     }
 
     function frmControl($id,$placeholder='',$value='',$disabled=''){
-        global $campos;
+        global $campos, $obligatorios;
         $control='';
         $type=isset($campos[$id]['type']) ? $campos[$id]['type'] : 'text';
         //$placeholder='';
@@ -40,10 +40,13 @@
             $tooltip='data-toggle="tooltip" data-placement="top" title="'.$title.'"';
             $placeholder='';
         }
+
+        $required=in_array($id,$obligatorios) ? 'required' : '';
+
         //create a select
         if(isset($campos[$id]['values'])){
 
-            $input='<select '.$disabled.' class="form-control" name="C_'.$id.'" id="C_'.$id.'" '.$tooltip.'>';
+            $input='<select '.$required.' '.$disabled.' class="form-control" name="C_'.$id.'" id="C_'.$id.'" '.$tooltip.'>';
             $t=empty($placeholder) ? '...' : $placeholder;
             $input.='<option disabled selected value="">'.$t.'</option>';
             foreach($campos[$id]['values'] as $k => $v){
@@ -52,7 +55,7 @@
             }
             $input.='</select>';
         } else {
-            $input='<input '.$disabled.' type="'.$type.'" class="form-control" name="C_'.$id.'" id="C_'.$id.'" placeholder="'.$placeholder.'" value="'.$value.'" '.$tooltip.'>';
+            $input='<input '.$required.' '.$disabled.' type="'.$type.'" class="form-control" name="C_'.$id.'" id="C_'.$id.'" placeholder="'.$placeholder.'" value="'.$value.'" '.$tooltip.'>';
         }
         return $input;
     }

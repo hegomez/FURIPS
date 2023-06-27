@@ -50,7 +50,7 @@
     <div class="col-md-12">
         <div class="input-group">
             <div class="input-group-addon"><i class="far fa-edit"></i></div>
-            <textarea class="form-control" name="lDesc" id="lDesc" placeholder="Descripción del Evento o Accidente" rows="3"></textarea>
+            <textarea class="form-control" required name="descEvent" id="descEvent" placeholder="Descripción del Evento o Accidente" rows="3"></textarea>
         </div>
     </div>
 </div>
