@@ -31,6 +31,6 @@
         </div>
     </div> 
     <div class="col-md-4">
-        <button type="submit" class="btn btn-info btn-block btn-flat"><i class="fa fa-bell"></i> CREAR FURIP</button>
+        <button type="submit" onclick="GenerateFURIPS()" class="btn btn-info btn-block btn-flat"><i class="fa fa-bell"></i> CREAR FURIP</button>
     </div>
 </div>

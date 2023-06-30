@@ -135,13 +135,14 @@
 <script src="dist/js/adminlte.js"></script>
 <script src="dist/js/demo.js"></script>
 <script src="dist/js/campos.js"></script>
-<script src="dist/js/furips.js"></script>
 <!-- insertar sweetalert online -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="dist/js/furips.js"></script>
 <script>
 	$(document).ready(function () {
 		$('.sidebar-menu').tree();
 		$("#C_4").val('2023010001');
+		getDepartamentos();
 	})
 	
 	$(document).on('click','.checkbox',function(){

@@ -23,6 +23,7 @@
         <div class="input-group">
             <div class="input-group-addon"><i class="far fa-building"></i></div>
             <?php echo frmControl(67,'placeholder'); ?>
+            <div id="autocomplete_C_67"></div>
         </div>
     </div>
     <div class="col col-md-8">
@@ -54,6 +55,7 @@
         <div class="input-group">
             <div class="input-group-addon"><i class="far fa-building"></i></div>
             <?php echo frmControl(72,'placeholder'); ?>
+            <div id="autocomplete_C_72"></div>
         </div>
     </div>
     <div class="col col-md-8">

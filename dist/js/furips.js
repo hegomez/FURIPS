@@ -1,13 +1,101 @@
+function getDepartamentos(){
+    $.ajax({
+        url: 'process/prc_furips.php',
+        type: 'POST',
+        data: {action:'getDepartamentos'},
+        success: function(data){
+            //fill the selects C_16,C_25,C_52,C_61
+            var data=JSON.parse(data);
+            data=data.data;
+            var html='<option value="">Seleccione Departamento</option>';
+            for(var i=0;i<data.length;i++){
+                html+='<option value="'+data[i].uid+'">'+data[i].nombre+'</option>';
+            }
+            $('#C_16,#C_25,#C_52,#C_61').html(html);
+        }
+    });
+}
+
+//verifi if change the value of C_16,C_25,C_52,C_61
+$(document).on('change','#C_16, #C_25, #C_52, #C_61',function(){
+    var departamento=parseInt($(this).val());
+    var deptoId=parseInt($(this).attr('id').replace('C_',''));
+    deptoId++;
+    $.ajax({
+        url: 'process/prc_furips.php',
+        type: 'POST',
+        data: {action:'getMunicipios',departamento:departamento},
+        success: function(data){
+            var data=JSON.parse(data);
+            data=data.data;
+            var html='<option value="">Seleccione Municipio</option>';
+            for(var i=0;i<data.length;i++){
+                html+='<option value="'+data[i].uid+'">'+data[i].nombre+'</option>';
+            }
+            $('#C_'+deptoId).html(html);
+        }
+    });
+});
+
+$(document).on('input','#C_67, #C_72',function(){
+    var id=$(this).attr('id');
+    var searchKeyword =$(this).val().toUpperCase();
+    if (searchKeyword.length >= 3) {
+        $.ajax({
+            url: 'process/prc_furips.php',
+            method: 'POST',
+            data: {action: 'search_ips', keyword: searchKeyword},
+            dataType: 'json',
+            success: function(response) {
+                // Muestra los resultados en el div de autocomplete
+                var resultsDiv = $('#autocomplete_'+id);
+                resultsDiv.empty(); // Limpiar resultados anteriores
+                if (response.length > 0) {
+                  $.each(response, function(index, element) {
+                    var resultItem = $('<div class="autocomplete-item">' + element.nombre + '</div>');
+                    resultItem.data('val', element.hab);
+                    resultsDiv.append(resultItem);
+                  });
+                } else {
+                  resultsDiv.html('<div class="autocomplete-item">No se encontraron resultados</div>');
+                }
+            }
+        });
+    }
+});
+
+$(document).on('blur','#C_67, #C_72',function(){
+    if($(this).attr('data-val')!=undefined){
+        $(this).val($(''));
+        $('#autocomplete_'+id).html('');
+    }
+});
+
+$(document).on('click','.autocomplete-item',function(){
+    var id=$(this).parent().attr('id').replace('autocomplete_','');
+    var val=$(this).attr('data-val');
+    $('#'+id).val($(this).text());
+    $('#'+id).attr('data-val',val);
+    $('#autocomplete_'+id).html('');
+});
 function GenerateFURIPS(){
     var error='';
     var errCUPS=[];
     var errTraslado='';
+    var data={};
     //Se recorren los controles y se verifica que los requeridos no esten vacios
     $('.form-control').each(function(){
         var id=$(this).attr('id');
+        var uid=$(this).attr('id');
         id=id.replace('C_','');
          if($(this).attr('required') && $(this).val()==''){
             error+='El campo <strong>'+campos[id]+'</strong> es requerido<br>';
+        }
+        //verify if isset attr data-val
+        if($(this).attr('data-val')!=undefined){
+            data[uid]=$(this).attr('data-val');
+        } else {
+            data[uid]=$(this).val();
         }
     });
     //Verificaciones Opcionales
@@ -80,6 +168,91 @@ function GenerateFURIPS(){
     var trasladoLocal=false;
     if(trasladoLocal==true){
         errTraslado+='Para esta reclamacion son obligatorios los datos de traslado de movilizacion de la victima<br>';
+    }
+
+    //Procesar errores
+    if(error!=''){
+        Swal.fire({
+            title: 'Error!',
+            html: error,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+    } else if(errCUPS.length>0){
+        var err='';
+        for(var i=0;i<errCUPS.length;i++){
+            err+=errCUPS[i]+'<br>';
+        }
+        Swal.fire({
+            title: 'Error!',
+            html: err,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+    } else if(errTraslado!=''){
+        Swal.fire({
+            title: 'Error!',
+            html: errTraslado,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+    } else {
+        //mostrar modal de confirmacion
+        Swal.fire({
+            title: 'Confirmar',
+            text: "¿Desea guardar la informacion?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '<i class="fas fa-save"></i> Guardar',
+            cancelButtonText: '<i class="fas fa-times"></i> Cancelar'
+        }).then((result) => {
+            if (result.value) {
+                //show loading text with a spinner then make ajax call
+                Swal.fire({
+                    title: 'Guardando',
+                    html: 'Por favor espere un momento <i class="fas fa-spinner fa-spin"></i>',
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
+                    }
+                });
+                
+                console.log(data);
+                $.ajax({
+                    url: 'process/prc_furips.php',
+                    type: 'POST',
+                    data: {data:data,action:'saveFURIPS'},
+                    success: function(data){
+                        if(data.status=='success'){
+                            //mostrar un swal con un iframe en su src reports/furips.php?ID=ID
+                            Swal.fire({
+                                title: 'FURIPS',
+                                html: '<iframe src="reports/furips.php?ID='+data.ID+'" width="100%" height="500px"></iframe>',
+                                icon: 'success',
+                                confirmButtonText: 'Aceptar'
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                html: data.msg,
+                                icon: 'error',
+                                confirmButtonText: 'Aceptar'
+                            });
+                        }
+                    },
+                    error: function(){
+                        Swal.fire({
+                            title: 'Error!',
+                            html: 'Error al guardar la informacion',
+                            icon: 'error',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    }
+                });
+            }
+        });
     }
 
 }
