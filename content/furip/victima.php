@@ -87,4 +87,10 @@
             <?php echo frmControl(19,'tooltip'); ?>
         </div>
     </div>
+    <div class="col-md-6">
+        <div class="input-group">
+            <div class="input-group-addon"><i class="fas fa-key"></i></div>
+            <?php echo frmControl(36,'placeholder'); ?>
+        </div>
+    </div>
 </div>

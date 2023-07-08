@@ -6,13 +6,15 @@
             <?php echo frmControl(44,'tooltip'); ?>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
         <div class="input-group">
             <div class="input-group-addon"><i class="fas fa-address-card"></i></div>
             <?php echo frmControl(45,'placeholder'); ?>
         </div>
     </div>
-
+    <div class="col-md-2">
+        <button id="vic2prop" data-toggle="tooltip" data-placement="top" title="" data-original-title="Victima es Propietario" class="btn btn-default btn-block"><i class="fas fa-user-injured"></i></button>
+    </div>
     <div class="col-md-6">
         <div class="input-group">
             <div class="input-group-addon"><i class="fas fa-user"></i></div>

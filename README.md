@@ -13,6 +13,7 @@ La implementación de esta aplicación se basa en la Circular 000000008 de 2023,
 - Generación del archivo FURIPS1: La aplicación permite generar el archivo FURIPS1, el cual contiene la información detallada de los servicios prestados a las víctimas de eventos catastróficos y accidentes de tránsito. Este archivo es requerido para la presentación de reclamaciones.
 - Generación del archivo FURIPS2: Además del FURIPS1, la aplicación también puede generar el archivo FURIPS2, el cual contiene información complementaria relacionada con los servicios prestados. Este archivo es opcional, pero puede ser útil para brindar detalles adicionales.
 - Generación del PDF del FURIP: La aplicación permite generar un PDF del Formulario Único de Reclamación de Instituciones Prestadoras de Servicios de Salud (FURIP). Este documento recopila la información relevante de la reclamación y puede ser impreso o compartido digitalmente.
+- Cabe anotar que hasta el momento solo genera el PDF del FURIPS para su presentación
 
 ## Recursos
 
@@ -22,4 +23,3 @@ La implementación de esta aplicación se basa en la Circular 000000008 de 2023,
 
 ¡Gracias por tu interés en FURIPS_WEB! Si tienes alguna pregunta o sugerencia, no dudes en abrir un problema en este repositorio.
 
-## Cambios

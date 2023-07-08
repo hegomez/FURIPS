@@ -22,15 +22,18 @@
 </div>
 <div class="row row-bottom-margin">    
     <div class="col-md-4">
-    <strong>Servicios Habilitados</strong>
-    </div>
-    <div class="col-md-4">
-    <div class="input-group">
+        <div class="input-group">
             <div class="input-group-addon"><i class="fas fa-user"></i></div>
             <?php echo frmControl(101,'tooltip'); ?>
         </div>
     </div> 
     <div class="col-md-4">
-        <button type="submit" onclick="GenerateFURIPS()" class="btn btn-info btn-block btn-flat"><i class="fa fa-bell"></i> CREAR FURIP</button>
+        <div class="input-group">
+            <div class="input-group-addon"><i class="far fa-copy"></i></div>
+            <input type="text" class="form-control" id="folios" name="folios" placeholder="# Folios" value="" required>
+        </div>
+    </div> 
+    <div class="col-md-4">
+        <button type="submit" onclick="GenerateFURIPS()" class="btn btn-info btn-block btn-flat"><i class="far fa-file-pdf"></i> CREAR FURIP</button>
     </div>
 </div>

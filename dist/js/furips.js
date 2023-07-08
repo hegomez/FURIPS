@@ -116,12 +116,12 @@ function GenerateFURIPS(){
     }
 
     //Datos obligatorios de vehiculos
-    //Marca (C_29) es obligatorio si el estado de aseguramiento (C_28) es 3 o 5
-    if($("#C_28").val()==3 || $("#C_28").val()==5){
+    //Marca (C_29) es obligatorio si el estado de aseguramiento (C_28) no es 3 y 5
+    if($("#C_28").val()!=3 && $("#C_28").val()!=5){
         error+=specialVerify('29');
     }
-    //Placa (C_30) y Tipo Vehiculo (C_31) son obligatorio si el estado de aseguramiento (C_28) es 1,2,4,5,6,7
-    if($("#C_28").val()==1 || $("#C_28").val()==2 || $("#C_28").val()==4 || $("#C_28").val()==5 || $("#C_28").val()==6 || $("#C_28").val()==7){
+    //Placa (C_30) y Tipo Vehiculo (C_31) son obligatorio si el estado de aseguramiento (C_28) es 1,2,4,6,7
+    if($("#C_28").val()==1 || $("#C_28").val()==2 || $("#C_28").val()==4 || $("#C_28").val()==6 || $("#C_28").val()==7){
         error+=specialVerify('30,31');
     }
     //Aseguradora (C_32), Poliza (C_33) y la vigencia de la poliza (C_34 y C_35) son obligatorios si el estado de aseguramiento (C_28) es 1,4 o 6
@@ -267,3 +267,95 @@ function specialVerify(fiels){
     }
     return error;
 }
+
+//al cambiar C_20 (Evento) mostrar el campo C_21 (Descripcion otro Tipo de Evento)
+$(document).on('change','#C_20',function(){
+    if($(this).val()=='17'){
+        $('#C_21').parent().parent().show();
+    } else {
+        $('#C_21').parent().parent().hide();
+    }
+});
+
+//pasar datos de victima a propietario
+$(document).on('click','#vic2prop',function(){
+    var docProp=['CC','CE','CD','DE','SC','PE','PT','NI'];
+    //verify if the value of C_10 is in docProp
+    if(docProp.indexOf($('#C_10').val())!=-1){
+        $('#C_44').val($('#C_10').val());
+        $('#C_45').val($('#C_11').val());
+        $('#C_46').val($('#C_6').val());
+        $('#C_47').val($('#C_7').val());
+        $('#C_48').val($('#C_8').val());
+        $('#C_49').val($('#C_9').val());
+        $('#C_50').val($('#C_15').val());
+        $('#C_51').val($('#C_18').val());
+        //cambia el valor del select de C_52 por el valor de C_16 activando el evento change
+        $('#C_52').val($('#C_16').val()).change();
+        setTimeout(function(){
+            $('#C_53').val($('#C_17').val());
+        },500);
+    } else {
+        Swal.fire({
+            title: 'Error!',
+            html: 'El tipo de documento de identificacion de la victima no es valido para el propietario del vehiculo',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+});
+//pasar datos de victima a conductor
+$(document).on('click','#vic2cond',function(){
+    var docProp=['CC','CE','PA','RC','TI','CD','SC','DE','PE','PT'];
+    //verify if the value of C_10 is in docProp
+    if(docProp.indexOf($('#C_10').val())!=-1){
+        $('#C_58').val($('#C_10').val());
+        $('#C_59').val($('#C_11').val());
+        $('#C_54').val($('#C_6').val());
+        $('#C_55').val($('#C_7').val());
+        $('#C_56').val($('#C_8').val());
+        $('#C_57').val($('#C_9').val());
+        $('#C_60').val($('#C_15').val());
+        $('#C_63').val($('#C_18').val());
+        //cambia el valor del select de C_52 por el valor de C_16 activando el evento change
+        $('#C_61').val($('#C_16').val()).change();
+        setTimeout(function(){
+            $('#C_62').val($('#C_17').val());
+        },500);
+    } else {
+        Swal.fire({
+            title: 'Error!',
+            html: 'El tipo de documento de identificacion de la victima no es valido para el conductor del vehiculo',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+});
+//pasar datos de propietario a conductor
+$(document).on('click','#prop2cond',function(){
+    var docProp=['CC','CE','PA','RC','TI','CD','SC','DE','PE','PT'];
+    //verify if the value of C_10 is in docProp
+    if(docProp.indexOf($('#C_44').val())!=-1){
+        $('#C_58').val($('#C_44').val());
+        $('#C_59').val($('#C_45').val());
+        $('#C_54').val($('#C_46').val());
+        $('#C_55').val($('#C_47').val());
+        $('#C_56').val($('#C_48').val());
+        $('#C_57').val($('#C_49').val());
+        $('#C_60').val($('#C_50').val());
+        $('#C_63').val($('#C_51').val());
+        //cambia el valor del select de C_52 por el valor de C_16 activando el evento change
+        $('#C_61').val($('#C_52').val()).change();
+        setTimeout(function(){
+            $('#C_62').val($('#C_53').val());
+        },500);
+    } else {
+        Swal.fire({
+            title: 'Error!',
+            html: 'El tipo de documento de identificacion del propietario no es valido para el conductor del vehiculo',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+});
+

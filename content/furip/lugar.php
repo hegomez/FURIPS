@@ -5,7 +5,7 @@
             <?php echo frmControl(20,'placeholder','01'); ?>
         </div>
     </div>
-    <div class="col-md-12">
+    <div style="display:none" class="col-md-12">
         <div class="input-group">
             <div class="input-group-addon"><i class="fas fa-file-signature"></i></div>
             <?php echo frmControl(21,'placeholder'); ?>
